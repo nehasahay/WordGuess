@@ -3,11 +3,11 @@ const Letter = require("./Letter.js");
 function Word(word) {
     // Eliminates split
     this.letters = Array.prototype.map.call(word, character => new Letter(character));
-    this.displayWord = function () {
+    this.toString = function () {
         // Eliminates an extra loop over map&join
         return this.letters.reduce((accumulator, character, index) => {
             // Template literal performs better than standard concatenation
-            return `${accumulator}${index === 0 ? "" : " "}${character.displayLetter()}`;
+            return `${accumulator}${index === 0 ? "" : " "}${character}`;
         }, "");
     };
     this.checkLetters = function (guess) {

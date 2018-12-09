@@ -26,11 +26,10 @@ function guessALetter(word, numberOfGuesses) {
             }
         }]).then(response => {
             word.checkLetters(response.guess);
-            const wordDisplayed = word.displayWord();
-            console.log(`\n${wordDisplayed}\n`);
+            console.log(`\n${word}\n`);
 
             // Decrements the number of guesses left if the guess were wrong
-            if (wordDisplayed.toLowerCase().indexOf(response.guess) === -1) {
+            if (word.toString().toLowerCase().indexOf(response.guess) === -1) {
                 numberOfGuesses--;
                 console.log(`\n${chalk.red.bold("INCORRECT!!!")}\n\n${numberOfGuesses} ${numberOfGuesses === 1 ? "guess" : "guesses"} remaining!!!\n`);
             } else {
@@ -53,7 +52,7 @@ function guessALetter(word, numberOfGuesses) {
 function main() {
     // Randomly selects a word and stores it with the Word constructor
     const randomWord = new Word(ARRAY_OF_WORDS[Math.floor(Math.random() * ARRAY_OF_WORDS.length)]);
-    console.log(`\n${randomWord.displayWord()}\n`);
+    console.log(`\n${randomWord}\n`);
     guessALetter(randomWord, NUMBER_OF_GUESSES);
 };
 
